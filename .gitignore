@@ -1,5 +1,6 @@
 #ignore objects and archives, anywhere in the tree.
 *.swp
+*.un~
 
 # Prerequisites
 *.d
@@ -36,3 +37,4 @@
 
 # Qt 
 *.pro.user
+build*/
