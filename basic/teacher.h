@@ -16,6 +16,7 @@ signals:
     //2.只需声明，无需实现
     //3.自定义的信号可以发生重载
     void hungry();
+    void hungry(QString foodName);
 
 public slots:
 };

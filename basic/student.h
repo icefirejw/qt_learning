@@ -18,6 +18,7 @@ public slots:
     //2.需要声明，需要实现
     //3.可以重载
     void treat();
+    void treat(QString foodName);
 };
 
 #endif // STUDENT_H

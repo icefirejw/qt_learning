@@ -27,15 +27,27 @@ MyWidget::MyWidget(QWidget *parent)
     zt = new Teacher(this);
     st = new Student(this);
 
-    connect(zt, &Teacher::hungry, st, &Student::treat);
+
+    // 当信号或槽发生重载时
+    // 需要使用函数指针明确调研的信号函数和槽函数
+    // connect(zt, &Teacher::hungry, st, &Student::treat);
+    void (Teacher:: * teacherSignal)(QString) = &Teacher::hungry;
+    void (Student:: * studentSlot)(QString) = &Student::treat;
+    connect(zt, teacherSignal, st, studentSlot);
+
+    //调用函数发送信号
     classIsOver();
+
+    //断开链接
+    disconnect(zt, teacherSignal, st, studentSlot);
 
 }
 
 void MyWidget::classIsOver()
 {
     //使用**emit**出发信号
-    emit zt->hungry();
+    //emit zt->hungry();
+    emit zt->hungry("宫保鸡丁");
 }
 MyWidget::~MyWidget()
 {
