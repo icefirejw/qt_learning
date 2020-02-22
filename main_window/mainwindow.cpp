@@ -4,6 +4,8 @@
 #include <QPushButton>
 #include <QStatusBar>
 #include <QLabel>
+#include <QDockWidget>
+#include <QTextEdit>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -60,12 +62,17 @@ MainWindow::MainWindow(QWidget *parent)
     stBar->addPermanentWidget(rightLabel);
 
     ////////////////////////////////////////
-    //铆接部件
+    //铆接部件(悬浮窗口）
     ////////////////////////////////////////
+    QDockWidget * dock = new QDockWidget("铆接部件",this);
+    addDockWidget(Qt::BottomDockWidgetArea, dock);
+    dock->setAllowedAreas(Qt::BottomDockWidgetArea|Qt::TopDockWidgetArea);
 
-
-
-
+    ////////////////////////////////////////
+    //核心部件
+    ////////////////////////////////////////
+    QTextEdit * textEdit = new QTextEdit(this);
+    setCentralWidget(textEdit);
 }
 
 MainWindow::~MainWindow()
